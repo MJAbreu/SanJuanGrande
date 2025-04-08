@@ -1,0 +1,43 @@
+{
+  "short_name": "San Juan Grande",
+  "name": "App San Juan Grande",
+  "description": "Aplicación de gestión para la residencia San Juan Grande",
+  "icons": [
+    {
+      "src": "vite.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "vite.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "vite.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "orientation": "any",
+  "categories": ["healthcare", "management"],
+  "prefer_related_applications": false,
+  "scope": "/",
+  "shortcuts": [
+    {
+      "name": "Inicio",
+      "url": "/",
+      "description": "Página principal de la aplicación"
+    }
+  ],
+  "screenshots": [],
+  "related_applications": [],
+  "lang": "es-ES"
+}

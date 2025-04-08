@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: san-juan-grande-api
+    env: node
+    buildCommand: cd server && npm install && npm run db:migrate
+    startCommand: cd server && node index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DB_USER
+        sync: false
+      - key: DB_HOST
+        sync: false
+      - key: DB_NAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_PORT
+        value: 5432
+      - key: JWT_SECRET
+        sync: false
+      - key: CLIENT_URL
+        value: https://san-juan-grande.onrender.com
+    autoDeploy: true
+    healthCheckPath: /api/health
+
+  - type: postgres
+    name: san-juan-grande-db
+    plan: free
+    ipAllowList: []
+    region: ohio

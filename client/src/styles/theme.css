@@ -1,0 +1,38 @@
+:root {
+  --primary-color: #00A7E1;
+  --primary-light: #4DC4FF;
+  --primary-dark: #0076A3;
+  --background-color: #FFFFFF;
+  --text-color: #213547;
+  --accent-color: #F9F9F9;
+}
+
+.watermark {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 60%;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: -1;
+  background-image: url('../assets/logo-hospital-jerez.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.app-logo {
+  width: 120px;
+  height: 120px;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: var(--background-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

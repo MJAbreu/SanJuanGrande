@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">SanJuanGrande</string>
+    <string name="title_activity_main">SanJuanGrande</string>
+    <string name="package_name">com.sanjuangrande.app</string>
+    <string name="custom_url_scheme">com.sanjuangrande.app</string>
+</resources>
