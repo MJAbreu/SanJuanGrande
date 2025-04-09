@@ -92,6 +92,6 @@ io.on('connection', (socket) => {
 
 const PORT = process.env.PORT || 3000;
 
-httpServer.listen(PORT, () => {
+httpServer.listen(PORT, '0.0.0.0', () => {
   logger.info(`Servidor corriendo en el puerto ${PORT} en modo ${process.env.NODE_ENV}`);
 });

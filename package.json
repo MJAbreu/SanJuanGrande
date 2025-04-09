@@ -1,14 +1,17 @@
 {
-  "name": "app-san-juan-grande",
+  "name": "san-juan-grande",
   "version": "1.0.0",
-  "description": "Aplicación de gestión para residencia de ancianos y centro de día",
+  "description": "Aplicación de gestión para la Residencia San Juan Grande",
   "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "scripts": {
-    "start": "node server/index.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "nodemon server/index.js",
-    "client": "cd client && npm run dev",
-    "build": "cd client && npm run build"
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\"",
+    "build:all": "cd client && npm install && npm run build && cd ../server && npm install && npm run db:migrate",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "@capacitor/android": "^7.2.0",
