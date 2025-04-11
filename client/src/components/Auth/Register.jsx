@@ -9,6 +9,7 @@ const Register = () => {
     apellidos: '',
     email: '',
     password: '',
+    confirmPassword: '',
     tipoUsuario: 'residente'
   });
   const [error, setError] = useState('');
@@ -27,25 +28,64 @@ const Register = () => {
     e.preventDefault();
     setError('');
     
+    // Validaciones del formulario
+    if (!userData.nombre || !userData.apellidos) {
+      setError('Por favor, complete todos los campos obligatorios');
+      return;
+    }
+
+    if (!userData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      setError('Por favor, ingrese un correo electrónico válido');
+      return;
+    }
+
+    if (userData.password.length < 6) {
+      setError('La contraseña debe tener al menos 6 caracteres');
+      return;
+    }
+
+    if (userData.password !== userData.confirmPassword) {
+      setError('Las contraseñas no coinciden');
+      return;
+    }
+
     try {
-      const response = await fetch('http://localhost:3000/api/auth/register', {
+      console.log('Intentando registrar en:', import.meta.env.VITE_API_URL);
+      const { confirmPassword, ...dataToSend } = userData;
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(dataToSend),
+        mode: 'cors',
+        credentials: 'include'
       });
 
       const data = await response.json();
+      console.log('Respuesta del servidor:', response.status);
 
       if (response.ok) {
         login(data.user, data.token);
         navigate('/');
       } else {
-        setError(data.message || 'Error al registrar usuario');
+        console.error('Error en la respuesta:', data);
+        let errorMessage = 'Error al registrar usuario.';
+        if (data.message && data.message.includes('already exists')) {
+          errorMessage = 'Este correo electrónico ya está registrado. Por favor, utilice otro.';
+        } else if (data.message && data.message.includes('validation')) {
+          errorMessage = 'Por favor, verifique que todos los datos sean correctos.';
+        }
+        setError(errorMessage);
       }
     } catch (err) {
-      setError('Error de conexión con el servidor');
+      console.error('Error de conexión:', err);
+      setError('No se pudo conectar con el servidor. Por favor, verifique su conexión a internet o inténtelo más tarde.');
+      // Intentar limpiar el mensaje de error después de un tiempo
+      setTimeout(() => {
+        setError('');
+      }, 5000);
     }
   };
 
@@ -100,6 +140,17 @@ const Register = () => {
             />
           </div>
           <div className="form-group">
+            <label htmlFor="confirmPassword">Confirmar Contraseña</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              value={userData.confirmPassword}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
             <label htmlFor="tipoUsuario">Tipo de Usuario</label>
             <select
               id="tipoUsuario"
@@ -115,6 +166,7 @@ const Register = () => {
             </select>
           </div>
           <button type="submit" className="auth-button">Registrarse</button>
+          <button type="button" className="button" onClick={() => navigate('/')} style={{ marginTop: '1rem' }}>Volver</button>
         </form>
       </div>
     </div>

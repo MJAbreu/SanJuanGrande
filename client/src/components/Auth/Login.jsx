@@ -25,24 +25,31 @@ const Login = () => {
     setError('');
     
     try {
-      const response = await fetch('http://localhost:3000/api/auth/login', {
+      console.log('Intentando conectar a:', import.meta.env.VITE_API_URL);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
-        body: JSON.stringify(credentials)
+        body: JSON.stringify(credentials),
+        mode: 'cors',
+        credentials: 'include'
       });
 
       const data = await response.json();
+      console.log('Respuesta del servidor:', response.status);
 
       if (response.ok) {
         login(data.user, data.token);
         navigate('/');
       } else {
-        setError(data.message || 'Error al iniciar sesión');
+        console.error('Error en la respuesta:', data);
+        setError(data.message || 'Error al iniciar sesión. Por favor, verifica tus credenciales.');
       }
     } catch (err) {
-      setError('Error de conexión con el servidor');
+      console.error('Error de conexión:', err);
+      setError('Error de conexión con el servidor. Por favor, verifica tu conexión a internet e inténtalo de nuevo.');
     }
   };
 
@@ -80,7 +87,7 @@ const Login = () => {
           <p>¿No tienes una cuenta?</p>
           <button 
             onClick={() => navigate('/register')} 
-            className="auth-link-button"
+            className="button"
           >
             Registrarse
           </button>

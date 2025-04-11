@@ -15,7 +15,7 @@ const UserList = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/usuarios');
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/usuarios`);
       if (!response.ok) {
         throw new Error('Error al cargar los usuarios');
       }
@@ -44,7 +44,7 @@ const UserList = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/api/usuarios/${userId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/usuarios/${userId}`, {
         method: 'DELETE',
       });
 

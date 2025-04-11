@@ -1,20 +1,35 @@
 {
   "development": {
-    "use_env_variable": "DATABASE_URL",
+    "username": "san_juan_grande_db_user",
+    "password": "LxM2Z915pflHIv3Yon6HHjbUf3JLBh53",
+    "database": "san_juan_grande_db",
+    "host": "dpg-cvq7gv3ipnbc73clsvs0-a.ohio-postgres.render.com",
     "dialect": "postgres",
     "dialectOptions": {
-      "ssl": false
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
     }
   },
   "test": {
-    "use_env_variable": "DATABASE_URL",
+    "username": "san_juan_grande_db_user",
+    "password": "LxM2Z915pflHIv3Yon6HHjbUf3JLBh53",
+    "database": "san_juan_grande_db",
+    "host": "dpg-cvq7gv3ipnbc73clsvs0-a.ohio-postgres.render.com",
     "dialect": "postgres",
     "dialectOptions": {
-      "ssl": false
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
     }
   },
   "production": {
-    "use_env_variable": "DATABASE_URL",
+    "username": "san_juan_grande_db_user",
+    "password": "LxM2Z915pflHIv3Yon6HHjbUf3JLBh53",
+    "database": "san_juan_grande_db",
+    "host": "dpg-cvq7gv3ipnbc73clsvs0-a.ohio-postgres.render.com",
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {

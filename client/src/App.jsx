@@ -13,6 +13,7 @@ import Login from './components/Auth/Login'
 import Register from './components/Auth/Register'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import UserNav from './components/Auth/UserNav'
+import ServerStatus from './components/ServerStatus/ServerStatus'
 
 function App() {
   return (
@@ -33,8 +34,13 @@ function AppContent() {
     <Router>
       <div className="app-container">
         <header className="app-header">
+          <ServerStatus />
           <img src={logo} className="app-logo" alt="San Juan Grande logo" />
-          {isAuthenticated && <UserNav />}
+          {isAuthenticated && (
+            <>
+              <UserNav />
+            </>
+          )}
         </header>
         {isAuthenticated && <Navigation />}
         <div className="watermark"></div>

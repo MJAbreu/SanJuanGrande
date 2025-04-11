@@ -17,7 +17,7 @@ const ResidentList = () => {
 
   const fetchResidents = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/residentes');
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/residentes`);
       if (!response.ok) {
         throw new Error('Error al cargar los residentes');
       }
@@ -53,7 +53,7 @@ const ResidentList = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/api/residentes/${residentId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/residentes/${residentId}`, {
         method: 'DELETE',
       });
 

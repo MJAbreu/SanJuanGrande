@@ -5,7 +5,9 @@ const config: CapacitorConfig = {
   appName: 'San Juan Grande',
   webDir: 'dist',
   server: {
-    androidScheme: 'https'
+    androidScheme: 'https',
+    allowNavigation: ['https://san-juan-grande-api.onrender.com/*'],
+    cleartext: true
   },
   android: {
     iconPath: 'src/assets/logo-hospital-jerez.png',

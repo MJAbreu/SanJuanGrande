@@ -68,9 +68,13 @@ app.use('/api/asistencia', require('./routes/asistencia'));
 app.use('/api/menus', require('./routes/menus'));
 app.use('/api/usuarios', require('./routes/usuarios'));
 
-// Manejo de rutas no encontradas
-app.use((req, res) => {
-  res.status(404).json({ error: 'Ruta no encontrada' });
+// Servir archivos estáticos desde la carpeta dist del cliente
+const path = require('path');
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
+// Ruta para manejar todas las solicitudes que no sean API
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
 
 // Configuración de Socket.IO para el chat en tiempo real

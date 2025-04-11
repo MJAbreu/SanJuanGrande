@@ -29,11 +29,13 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  min-width: 320px;
   min-height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  overflow-x: hidden;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  box-sizing: border-box;
 }
 
 h1 {
@@ -71,17 +73,22 @@ body {
 
 main {
   flex: 1;
-  padding: 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 1rem;
+  max-width: 100%;
   width: 100%;
+  margin: 0 auto;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   @media (min-width: 768px) {
-    padding: 2rem;
+    padding: 1.5rem;
+    max-width: 768px;
   }
 
   @media (min-width: 1024px) {
-    padding: 2.5rem;
+    padding: 2rem;
+    max-width: 1024px;
   }
 }
