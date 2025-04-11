@@ -3,10 +3,7 @@ services:
     name: san-juan-grande-app
     env: node
     region: ohio
-    buildCommand: |
-      npm install
-      cd client && npm install && npm run build
-      cd ../server && npm install
+    buildCommand: npm ci && cd client && npm ci && npm run build && cd ..
     startCommand: cd server && npm start
     envVars:
       - key: NODE_ENV
